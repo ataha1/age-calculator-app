@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Age calculator app</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <form action="">
+          <div class="birth-date">
+            <div>
+              <label for="" id="day-lable">Day</label>
+              <input class="day" type="text" name="day" placeholder="DD" />
+              <p class="error-color f-error" id="error-message-day"></p>
+            </div>
+            <div>
+              <label for="" id="month-lable">Month</label>
+              <input class="month" type="text" name="month" placeholder="MM" />
+            </div>
+            <div>
+              <label for="" id="year-lable">Year</label>
+              <input class="year" type="text" name="year" placeholder="YYYY" />
+            </div>
+          </div>
+          <div class="flex">
+            <div class="line"></div>
+            <div href="" class="button" onclick="handleClick()">
+              <img src="assets/images/icon-arrow.svg" alt="" />
+            </div>
+          </div>
+        </form>
+        <div class="current-age">
+          <div><span class="current-age-year">38</span>years</div>
+          <div><span class="current-age-month">3</span>months</div>
+          <div><span class="current-age-day">26</span>days</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Day DD Month MM Year YYYY -- years -- months -- days -->
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+  </body>
+</html>

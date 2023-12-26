@@ -1,0 +1,167 @@
+/* -------------------------- */
+/* Custom properties         */
+/* -------------------------- */
+:root {
+  /* colors  */
+  --clr-purple: hsl(259, 100%, 65%);
+  --clr-light-red: hsl(0, 100%, 67%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-off-white: hsl(0, 0%, 94%);
+  --clr-light-grey: hsl(0, 0%, 86%);
+  --clr-smokey-grey: hsl(0, 1%, 44%);
+  --clr-off-black: hsl(0, 0%, 8%);
+
+  /* font sizes  */
+  --fs-300: 0.75rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.5rem;
+  --fs-700: 4rem;
+
+  /* font weights */
+  --fw-400: 400;
+  --fw-500: 700;
+  --fw-600: 800;
+
+  /* font family  */
+  --ff-primary: "Poppins", sans-serif;
+}
+
+/* ------------- */
+/* Reset         */
+/* ------------- */
+* {
+  margin: 0;
+  font: inherit;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+img,
+svg {
+  display: block;
+  width: 100%;
+}
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-400);
+  min-height: 100vh;
+  background: var(--clr-off-white);
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  background: var(--clr-white);
+  max-width: 50rem;
+  padding: 2.5rem;
+  --radius-sml: 1rem;
+  --radius-lrg: 7rem;
+  border-radius: var(--radius-sml) var(--radius-sml) var(--radius-lrg)
+    var(--radius-sml);
+  margin-inline: 1rem;
+}
+
+.birth-date {
+  display: flex;
+  gap: 1.5rem;
+}
+.birth-date input[type="text"] {
+  display: block;
+  max-width: min(9rem, 25vw);
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border: var(--clr-light-grey) solid 0.05rem;
+  border-radius: 0.5rem;
+  color: var(--clr-off-black);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-600);
+  outline: none;
+}
+
+.birth-date input[type="text"]:focus {
+  border: var(--clr-purple) solid 0.05rem;
+}
+
+.birth-date input[type="text"]::placeholder {
+  color: var(--clr-light-grey);
+}
+
+.birth-date input[type="text"]:hover {
+  cursor: pointer;
+}
+
+.birth-date label {
+  color: var(--clr-smokey-grey);
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  font-size: var(--fs-300);
+}
+
+.birth-date p {
+  min-height: 1rem;
+}
+
+.button {
+  background-color: var(--clr-off-black);
+  border-radius: 50%;
+  width: 5rem;
+  aspect-ratio: 1;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--clr-purple);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  min-width: min(40rem, 70vw);
+}
+
+.line {
+  border-bottom: 0.1rem solid var(--clr-light-grey);
+  width: 100%;
+}
+
+@media (max-width: 30rem) {
+  .flex {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    padding-block: 4rem;
+  }
+  .button {
+    position: absolute;
+  }
+}
+
+.current-age {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-600);
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-age span {
+  color: var(--clr-purple);
+}
+
+.error-border {
+  border: solid var(--clr-light-red) 0.05rem !important;
+}
+
+.error-color {
+  color: var(--clr-light-red) !important;
+}
+
+.f-error {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-400);
+  font-style: italic;
+}
