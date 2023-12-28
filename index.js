@@ -1,30 +1,102 @@
-const dayInput = document.querySelector(".day");
-const dayLable = document.querySelector("#day-lable");
-const dayErrorMessage = document.querySelector("#error-message-day");
+const inputDay = document.querySelector(".day");
+const inputMonth = document.querySelector(".month");
+const inputYear = document.querySelector(".year");
 
-const ageDay = document.querySelector(".current-age-day");
-const ageMonth = document.querySelector(".current-age-month");
-const ageYear = document.querySelector(".current-age-year");
+const errMsgDay = document.querySelector("#error-message-day");
+const errMsgMonth = document.querySelector("#error-message-month");
+const errMsgYear = document.querySelector("#error-message-year");
 
-const currentDate = new Date();
+const outputDay = document.querySelector(".current-age-day");
+const outputMonth = document.querySelector(".current-age-month");
+const outputYear = document.querySelector(".current-age-year");
 
-function handleDay() {
-  const daysCnt = parseInt(dayInput.value);
-  if (daysCnt !== NaN && daysCnt <= 31 && daysCnt > 0) {
-    //if there is an error message hide it
-    dayInput.classList = ["day"];
-
-    //Dispaly the value
-    ageDay.textContent = dayInput.value;
-  } else {
-    const errorMessage = "Must be a valid day";
-    dayInput.classList.add("error-border");
-    dayLable.classList.add("error-color");
-
-    dayErrorMessage.textContent = errorMessage;
+function isValidInput(input, datePart, errMsg, upperBound, inputLength) {
+  let message = "";
+  let flag = true;
+  console.log(datePart, inputLength);
+  if (input.value === "") {
+    message = "This field is required";
+    flag = false;
+  } else if (
+    input.value.length !== inputLength ||
+    parseInt(input.value) === NaN ||
+    parseInt(input.value) > upperBound ||
+    parseInt(input.value) < 1
+  ) {
+    message = "Must be a valid " + datePart;
+    flag = false;
   }
+  if (flag === false) {
+    input.classList.add("error-border");
+    errMsg.textContent = message;
+  } else {
+    input.classList.remove("error-border");
+    input.textContent = "";
+  }
+  return flag;
+}
+
+function clearDate() {
+  outputDay.textContent = "--";
+  outputMonth.textContent = "--";
+  outputYear.textContent = "--";
 }
 
 function handleClick() {
-  handleDay();
+  //day error messages
+  const validDay = isValidInput(inputDay, "Day", errMsgDay, 31, 2);
+  const validMonth = isValidInput(inputMonth, "Month", errMsgMonth, 12, 2);
+  const validYear = isValidInput(inputYear, "Year", errMsgYear, 5000, 4);
+
+  if (!validDay || !validMonth || !validYear) {
+    clearDate();
+    return;
+  }
+
+  const dayOfBirth = inputDay.value;
+  const monthOfBirth = inputMonth.value;
+  const yearOfBirth = inputYear.value;
+  const currentDate = new Date();
+  const birthDate = new Date(
+    monthOfBirth + "/" + dayOfBirth + "/" + yearOfBirth
+  );
+  if (isNaN(birthDate)) {
+    const message = "Must be a valid date";
+    inputDay.classList.add("error-border");
+    inputMonth.classList.add("error-border");
+    inputYear.classList.add("error-border");
+    errMsgDay.textContent = message;
+    clearDate();
+    return;
+  }
+  if (currentDate < birthDate) {
+    const message = "Must be in the past";
+    inputDay.classList.add("error-border");
+    inputMonth.classList.add("error-border");
+    inputYear.classList.add("error-border");
+    errMsgYear.textContent = message;
+    clearDate();
+    return;
+  }
+  if (validDay && validMonth && validYear && isNaN(birthDate) === false) {
+    errMsgDay.textContent = "";
+    errMsgMonth.textContent = "";
+    errMsgYear.textContent = "";
+
+    inputDay.classList.remove("error-border");
+    inputMonth.classList.remove("error-border");
+    inputYear.classList.remove("error-border");
+
+    //Calculate current age
+    let differenceInTime = currentDate.getTime() - birthDate.getTime();
+    let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
+    let years = Math.floor(differenceInDays / 365.25);
+    let months = Math.floor((differenceInDays % 365.25) / 30);
+    let days = Math.floor((differenceInDays % 365.25) % 30);
+
+    //Display current age
+    outputDay.textContent = days;
+    outputMonth.textContent = months;
+    outputYear.textContent = years;
+  }
 }
