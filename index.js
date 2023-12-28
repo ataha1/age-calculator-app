@@ -31,7 +31,7 @@ function isValidInput(input, datePart, errMsg, upperBound, inputLength) {
     errMsg.textContent = message;
   } else {
     input.classList.remove("error-border");
-    input.textContent = "";
+    errMsg.textContent = "";
   }
   return flag;
 }
