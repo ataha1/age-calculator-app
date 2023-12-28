@@ -13,7 +13,6 @@ const outputYear = document.querySelector(".current-age-year");
 function isValidInput(input, datePart, errMsg, upperBound, inputLength) {
   let message = "";
   let flag = true;
-  console.log(datePart, inputLength);
   if (input.value === "") {
     message = "This field is required";
     flag = false;
@@ -40,6 +39,18 @@ function clearDate() {
   outputDay.textContent = "--";
   outputMonth.textContent = "--";
   outputYear.textContent = "--";
+}
+
+function doSomething() {
+  //do whatever you want here
+}
+
+function displayDatePart(output, counter) {
+  for (let count = 0; count <= counter; count++) {
+    setTimeout(() => {
+      output.textContent = count;
+    }, count * 50);
+  }
 }
 
 function handleClick() {
@@ -95,8 +106,8 @@ function handleClick() {
     let days = Math.floor((differenceInDays % 365.25) % 30);
 
     //Display current age
-    outputDay.textContent = days;
-    outputMonth.textContent = months;
-    outputYear.textContent = years;
+    displayDatePart(outputDay, days);
+    displayDatePart(outputMonth, months);
+    displayDatePart(outputYear, years);
   }
 }
