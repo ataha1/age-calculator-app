@@ -105,7 +105,7 @@ body {
 }
 
 .button {
-  background-color: var(--clr-off-black);
+  background-color: var(--clr-purple);
   border-radius: 50%;
   width: 5rem;
   aspect-ratio: 1;
@@ -114,7 +114,7 @@ body {
 }
 
 .button:hover {
-  background-color: var(--clr-purple);
+  background-color: var(--clr-off-black);
 }
 
 .flex {
